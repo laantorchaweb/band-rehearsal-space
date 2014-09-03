@@ -1,0 +1,15 @@
+<form class="form-inline" role="form" ng-submit="saveBand();">
+  <div class="form-group">
+    <label class="sr-only" for="band-name">Name</label>
+    <input type="text" class="form-control" id="band-name" placeholder="Enter band name" ng-model="band.name">
+  </div>
+  <div class="form-group">
+    <label class="sr-only" for="band-phone">Phone</label>
+    <input type="text" class="form-control" id="band-phone" placeholder="Phone Number" ng-model="band.phone">
+  </div>
+  <div class="form-group">
+    <label class="sr-only" for="band-date">Date</label>
+    <input type="text" class="form-control" id="band-date" placeholder="Date" ng-model="band.date">
+  </div>
+  <button type="submit" class="btn btn-primary">Add Band</button>
+</form>
