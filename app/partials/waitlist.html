@@ -1,15 +1,45 @@
-<form class="form-inline" role="form" ng-submit="saveBand();">
+<form class="form-inline band-form" role="form" ng-submit="saveBand();">
   <div class="form-group">
     <label class="sr-only" for="band-name">Name</label>
-    <input type="text" class="form-control" id="band-name" placeholder="Enter band name" ng-model="band.name">
+    <input type="text" class="form-control" id="band-name" placeholder="Enter band name" ng-model="newBand.name">
   </div>
   <div class="form-group">
     <label class="sr-only" for="band-phone">Phone</label>
-    <input type="text" class="form-control" id="band-phone" placeholder="Phone Number" ng-model="band.phone">
+    <input type="text" class="form-control" id="band-phone" placeholder="Phone Number" ng-model="newBand.phone">
   </div>
   <div class="form-group">
     <label class="sr-only" for="band-date">Date</label>
-    <input type="text" class="form-control" id="band-date" placeholder="Date" ng-model="band.date">
+    <input type="text" class="form-control" id="band-date" placeholder="Date" ng-model="newBand.date">
   </div>
   <button type="submit" class="btn btn-primary">Add Band</button>
 </form>
+
+<table class="table table-strip table-bordered">
+  <thead>
+    <tr>
+      <th>Done?</th>
+      <th>Information</th>
+      <th>Notified?</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="band in bands">
+      <td><input type="checkbox" ng-model="band.status"></td>
+      <td>
+        <div><strong>{{band.name}}</strong> - ({{band.date}})</div>
+        <div>{{band.phone}}</div>
+        <div>
+          <!-- TODO: Add date created. -->
+        </div>
+      </td>
+      <td>
+        <div></div>
+      </td>
+      <td>
+        <button type="submit" class="btn btn-success" ng-click="sendText(band.phone);">Send SMS</button>
+        <button type="submit" class="btn btn-danger" ng-click="bands.$remove(band);">Remove</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

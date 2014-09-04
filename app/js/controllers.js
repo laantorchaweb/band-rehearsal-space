@@ -7,11 +7,11 @@ angular.module('myApp.controllers', [])
 
     }])
     .controller('WaitlistController', ['$scope', '$firebase', function($scope, $firebase) {
-        var bandsRef  = new Firebase("https://band-space.firebaseio.com/");
+        var ref = new Firebase("https://band-space.firebaseio.com/bands");
+        var sync = $firebase(ref);
+        $scope.bands = sync.$asArray();
 
-        $scope.bands = $firebase(bandsRef);
-
-        $scope.band = {
+        $scope.newBand = {
             name: '',
             phone: '',
             date: ''
@@ -19,15 +19,24 @@ angular.module('myApp.controllers', [])
 
         $scope.saveBand = function() {
 
-            $scope.bands.$push( $scope.band ).then(function(newChildRef) {
-              console.log("added record with id " + newChildRef.name());
+            $scope.bands.$add($scope.newBand).then(function(newChildRef) {
+
             });
 
-            $scope.band = {
+            $scope.newBand = {
                 name: '',
                 phone: '',
                 date: ''
             };
+        };
+
+        $scope.sendText = function(phoneNumber) {
+            var msgRef = new Firebase("https://band-space.firebaseio.com/textMessages");
+            var msgsFirebase = $firebase(msgRef);
+            var msgs = msgsFirebase.$asArray();
+
+            msgs.$add({ phoneNumber: phoneNumber });
+
         };
 
     }]);
