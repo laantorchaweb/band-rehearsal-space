@@ -25,16 +25,18 @@
   </thead>
   <tbody>
     <tr ng-repeat="band in bands">
-      <td><input type="checkbox" ng-model="band.status"></td>
+      <td><input type="checkbox" ng-model="band.done" ng-change="bands.$save(band);"></td>
       <td>
-        <div><strong>{{band.name}}</strong> - ({{band.date}})</div>
-        <div>{{band.phone}}</div>
+        <div><strong>{{ band.name }}</strong> - ({{ band.date }})</div>
+        <div>{{ band.phone }}</div>
         <div>
           <!-- TODO: Add date created. -->
         </div>
       </td>
       <td>
-        <div></div>
+        <div>
+          {{ band.notified }}
+        </div>
       </td>
       <td>
         <button type="submit" class="btn btn-success" ng-click="sendText(band);">Send SMS</button>

@@ -14,7 +14,9 @@ angular.module('myApp.controllers', [])
         $scope.newBand = {
             name: '',
             phone: '',
-            date: ''
+            date: '',
+            done: false,
+            notified: 'No'
         };
 
         $scope.saveBand = function() {
@@ -26,7 +28,9 @@ angular.module('myApp.controllers', [])
             $scope.newBand = {
                 name: '',
                 phone: '',
-                date: ''
+                date: '',
+                done: false,
+                notified: 'No'
             };
         };
 
@@ -41,6 +45,9 @@ angular.module('myApp.controllers', [])
             };
 
             msgs.$add(newMsg);
+            band.notified = 'Yes';
+
+            $scope.bands.$save(band);
 
         };
 
