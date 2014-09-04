@@ -30,12 +30,17 @@ angular.module('myApp.controllers', [])
             };
         };
 
-        $scope.sendText = function(phoneNumber) {
+        $scope.sendText = function(band) {
             var msgRef = new Firebase("https://band-space.firebaseio.com/textMessages");
             var msgsFirebase = $firebase(msgRef);
             var msgs = msgsFirebase.$asArray();
+            var newMsg = {
+                name: band.name,
+                phoneNumber: band.phone,
+                date: band.date
+            };
 
-            msgs.$add({ phoneNumber: phoneNumber });
+            msgs.$add(newMsg);
 
         };
 
